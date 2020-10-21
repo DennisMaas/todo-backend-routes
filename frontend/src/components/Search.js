@@ -1,8 +1,7 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
+
 
 
 
@@ -26,7 +25,6 @@ export default function Search({search, onChange}){
             variant={"outlined"}
             margin={"normal"}
             type={"search"}
-
             value={search}
             fullWidth
             onChange={event => onChange(event.target.value)}/>

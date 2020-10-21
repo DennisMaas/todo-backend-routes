@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from "styled-components/macro";
 import TodoList from './components/TodoList';
 import useTodos from './hooks/useTodos';
 import AddTodo from './components/AddTodo';
