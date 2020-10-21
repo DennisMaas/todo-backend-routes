@@ -1,39 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Link} from "react-router-dom";
+import {Button} from "@material-ui/core";
 
 export default function Todo({ id, status, description, onAdvance, setIdToDelete }) {
 
 
 
     return (
-        <StyledTodo>
-            <h3>
-                {description} <small>[{status}]</small>
-            </h3>
-            <ButtonGroup>
-                {status !== 'DONE' && (
-                    <button
-                        onClick={() => onAdvance({ id, description, status })}
+        <section>
+            {description}
+            <section>
+                <Link to={"/delete"}>
+                    <Button onClick={() => setIdToDelete(id)}>Delete</Button>
+                </Link>
+                    <Button variant={"contained"} color={"primary"}
+                            onClick={() => onAdvance({ id, description, status })}
                     >
                         Advance
-                    </button>
-                )}
-                <Link to={"/delete"}>
-                    <button onClick={() => setIdToDelete(id)}>Delete</button>
-                </Link>
-            </ButtonGroup>
-        </StyledTodo>
+                    </Button>
+            </section>
+        </section>
     );
 }
-
-const StyledTodo = styled.section`
-    padding: 8px;
-    border: 1px solid #fa8072;
-    border-radius: 8px;
-`;
-
-const ButtonGroup = styled.section`
-    display: flex;
-    justify-content: space-between;
-`;

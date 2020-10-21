@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 import TodoList from './components/TodoList';
 import useTodos from './hooks/useTodos';
 import AddTodo from './components/AddTodo';
@@ -9,83 +9,105 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import {makeStyles} from "@material-ui/core/styles";
+import {Container} from "@material-ui/core";
 import NavBar from "./components/NavBar";
 import Delete from "./components/Delete";
 import ConfirmDelete from "./components/ConfirmDelete";
+
+const useStyles = makeStyles((theme)=> ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        marginTop: theme.spacing(8),
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.primary,
+    },
+    button: {
+        margin: theme.spacing(0.5, 0),
+    }
+}))
+
 
 export default function App() {
     const [todos, create, remove, advance] = useTodos();
     const [search, setSearch, filteredTodos] = useSearch(todos);
     const [idToDelete, setIdToDelete] = useState();
-
+    const classes = useStyles();
     return (
-        <Main>
-            <Header>
-                <h1>Super Kanban Board </h1>
-                <AddTodo onAdd={create} />
-                <Search search={search} onChange={setSearch}/>
-                <NavBar/>
-            </Header>
+        <Container maxWidth={"md"}>
+        <CssBaseline />
+            <Grid container className={classes.paper}  spacing={3}>
+                        <Grid item xs={12}>
+                            <Typography variant={"h1"}>
+                                Super Kanban Board
+                            </Typography>
+                        </Grid>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <AddTodo onAdd={create} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Search search={search} onChange={setSearch}/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <NavBar/>
+                        </Grid>
+                    </Grid>
             <Switch>
-                <Board>
-                    <Route exact path={["/", "/open"]}>
-                        <TodoList
-                            status="OPEN"
-                            todos={filteredTodos}
-                            onDelete={remove}
-                            onAdvance={advance}
-                            setIdToDelete={setIdToDelete}
-                        />
-                    </Route>
-                    <Route exact path={["/", "/in-progress"]}>
-                        <TodoList
-                            status="IN_PROGRESS"
-                            todos={filteredTodos}
-                            onDelete={remove}
-                            onAdvance={advance}
-                            setIdToDelete={setIdToDelete}
-                        />
-                    </Route>
-                    <Route exact path={["/", "/done"]}>
-                        <TodoList
-                            status="DONE"
-                            todos={filteredTodos}
-                            onDelete={remove}
-                            onAdvance={advance}
-                            setIdToDelete={setIdToDelete}
-                        />
-                    </Route>
-                    <Route exact path={"/delete"}>
-                        <Delete id={idToDelete} onDelete={remove}/>
-                    </Route>
-                    <Route exact path={"/confirmdelete"}>
-                        <ConfirmDelete/>
-                    </Route>
-
-                </Board>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                        <Route exact path={["/", "/open"]}>
+                            <TodoList
+                                status="OPEN"
+                                todos={filteredTodos}
+                                onDelete={remove}
+                                onAdvance={advance}
+                                setIdToDelete={setIdToDelete}
+                            />
+                        </Route>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Route exact path={["/", "/in-progress"]}>
+                            <TodoList
+                                status="IN_PROGRESS"
+                                todos={filteredTodos}
+                                onDelete={remove}
+                                onAdvance={advance}
+                                setIdToDelete={setIdToDelete}
+                            />
+                        </Route>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Route exact path={["/", "/done"]}>
+                            <TodoList
+                                status="DONE"
+                                todos={filteredTodos}
+                                onDelete={remove}
+                                onAdvance={advance}
+                                setIdToDelete={setIdToDelete}
+                            />
+                        </Route>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Route exact path={"/delete"}>
+                            <Delete id={idToDelete} onDelete={remove}/>
+                        </Route>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Route exact path={"/confirmdelete"}>
+                            <ConfirmDelete/>
+                        </Route>
+                    </Grid>
+                </Grid>
             </Switch>
-        </Main>
+        </Grid>
+        </Container>
     );
 }
-
-const Header = styled.header`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const Main = styled.main`
-    height: 100vh;
-    padding: 8px;
-
-    h1 {
-        color: hotpink;
-    }
-`;
-
-const Board = styled.section`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-`;

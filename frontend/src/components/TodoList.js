@@ -1,25 +1,26 @@
 import React from 'react';
 import Todo from './Todo';
-import styled from 'styled-components';
+import {List} from "@material-ui/core";
+import ListItem from "@material-ui/core/ListItem";
+import FormGroup from "@material-ui/core/FormGroup";
+import ListItemText from "@material-ui/core/ListItemText";
 
 export default function TodoList({ status, todos, onDelete, onAdvance, setIdToDelete }) {
     const filteredTodos = todos.filter((todo) => todo.status === status);
+
     return (
-        <StyledList>
+        <FormGroup>
+        <List>
             {filteredTodos.map((todo) => (
-                <li key={todo.id}>
-                    <Todo {...todo} onDelete={onDelete} onAdvance={onAdvance} setIdToDelete={setIdToDelete}/>
-                </li>
+                <ListItem key={todo.id}>
+                    <ListItemText
+                        primary={""}
+                        secondary={
+                            <Todo {...todo} onDelete={onDelete} onAdvance={onAdvance} setIdToDelete={setIdToDelete}/>
+                        }/>
+                </ListItem>
             ))}
-        </StyledList>
+        </List>
+        </FormGroup>
     );
 }
-
-const StyledList = styled.ul`
-    list-style: none;
-    padding: 0;
-
-    li + li {
-        margin-top: 12px;
-    }
-`;
