@@ -11,9 +11,10 @@ export default function ConfirmDelete() {
         }
     },[count])
 
-    return <>
+    return(
+    <div>
         <p>Item deleted</p>
         {count ? <p>redirecting in {count} seconds</p> : <Redirect to="/"/>}
-    </>
-
+    </div>
+    )
 }
