@@ -15,8 +15,8 @@ import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {Container} from "@material-ui/core";
 import NavBar from "./components/NavBar";
-import Delete from "./components/Delete";
-import ConfirmDelete from "./components/ConfirmDelete";
+
+
 
 const useStyles = makeStyles((theme)=> ({
     root: {
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme)=> ({
 export default function App() {
     const [todos, create, remove, advance] = useTodos();
     const [search, setSearch, filteredTodos] = useSearch(todos);
-    const [idToDelete, setIdToDelete] = useState();
     const classes = useStyles();
     return (
         <Container maxWidth={"md"}>
@@ -64,45 +63,35 @@ export default function App() {
                         <Grid container spacing={3}>
                             <Grid item xs={12} sm={4}>
                                 <Route exact path={["/", "/open"]}>
+                                    <Typography variant={"h4"}>OPEN</Typography>
                                     <TodoList
                                         status="OPEN"
                                         todos={filteredTodos}
                                         onDelete={remove}
                                         onAdvance={advance}
-                                        setIdToDelete={setIdToDelete}
                                     />
                                 </Route>
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Route exact path={["/", "/in-progress"]}>
+                                    <Typography variant={"h4"}>IN PROGRESS</Typography>
                                     <TodoList
                                         status="IN_PROGRESS"
                                         todos={filteredTodos}
                                         onDelete={remove}
                                         onAdvance={advance}
-                                        setIdToDelete={setIdToDelete}
                                     />
                                 </Route>
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Route exact path={["/", "/done"]}>
+                                    <Typography variant={"h4"}>DONE</Typography>
                                     <TodoList
                                         status="DONE"
                                         todos={filteredTodos}
                                         onDelete={remove}
                                         onAdvance={advance}
-                                        setIdToDelete={setIdToDelete}
                                     />
-                                </Route>
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <Route exact path={"/delete"}>
-                                    <Delete id={idToDelete} onDelete={remove}/>
-                                </Route>
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <Route exact path={"/confirmdelete"}>
-                                    <ConfirmDelete/>
                                 </Route>
                             </Grid>
                         </Grid>

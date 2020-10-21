@@ -12,7 +12,7 @@ export default function TodoList({ status, todos, onDelete, onAdvance, setIdToDe
         <FormGroup>
         <List>
             {filteredTodos.map((todo) => (
-                <ListItem key={todo.id}>
+                <ListItem alignItems={"flex-start"} key={todo.id}>
                     <ListItemText
                         primary={""}
                         secondary={
