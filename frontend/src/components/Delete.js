@@ -1,5 +1,7 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
+import {Button} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 export default function Delete({id, onDelete}) {
 
@@ -16,9 +18,9 @@ export default function Delete({id, onDelete}) {
 
     return(
         <>
-            <p>Do you want to delete this item?</p>
-            <button onClick={() => goBackHandler()}>go back</button>
-            <button onClick={() => deleteHandler(id)}>delete</button>
+            <Typography variant={"body1"} >Do you want to delete this item?</Typography>
+            <Button onClick={() => goBackHandler()}>go back</Button>
+            <Button variant={"contained"} color={"primary"} onClick={() => deleteHandler(id)}>delete</Button>
         </>
     );
 }

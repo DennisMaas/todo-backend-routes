@@ -41,72 +41,74 @@ export default function App() {
     const classes = useStyles();
     return (
         <Container maxWidth={"md"}>
-        <CssBaseline />
+            <CssBaseline />
             <Grid container className={classes.paper}  spacing={3}>
-                        <Grid item xs={12}>
-                            <Typography variant={"h1"}>
-                                Super Kanban Board
-                            </Typography>
-                        </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <AddTodo onAdd={create} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Search search={search} onChange={setSearch}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <NavBar/>
-                        </Grid>
-                    </Grid>
-            <Switch>
+                <Grid item xs={12}>
+                    <Typography variant={"h1"}>
+                        Super Kanban Board
+                    </Typography>
+                </Grid>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4}>
-                        <Route exact path={["/", "/open"]}>
-                            <TodoList
-                                status="OPEN"
-                                todos={filteredTodos}
-                                onDelete={remove}
-                                onAdvance={advance}
-                                setIdToDelete={setIdToDelete}
-                            />
-                        </Route>
+                    <Grid item xs={12}>
+                        <AddTodo onAdd={create} />
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Route exact path={["/", "/in-progress"]}>
-                            <TodoList
-                                status="IN_PROGRESS"
-                                todos={filteredTodos}
-                                onDelete={remove}
-                                onAdvance={advance}
-                                setIdToDelete={setIdToDelete}
-                            />
-                        </Route>
+                    <Grid item xs={12}>
+                        <Search search={search} onChange={setSearch}/>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Route exact path={["/", "/done"]}>
-                            <TodoList
-                                status="DONE"
-                                todos={filteredTodos}
-                                onDelete={remove}
-                                onAdvance={advance}
-                                setIdToDelete={setIdToDelete}
-                            />
-                        </Route>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Route exact path={"/delete"}>
-                            <Delete id={idToDelete} onDelete={remove}/>
-                        </Route>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Route exact path={"/confirmdelete"}>
-                            <ConfirmDelete/>
-                        </Route>
+                    <Grid item xs={12}>
+                        <NavBar/>
                     </Grid>
                 </Grid>
-            </Switch>
-        </Grid>
+                <Route>
+                    <Switch>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sm={4}>
+                                <Route exact path={["/", "/open"]}>
+                                    <TodoList
+                                        status="OPEN"
+                                        todos={filteredTodos}
+                                        onDelete={remove}
+                                        onAdvance={advance}
+                                        setIdToDelete={setIdToDelete}
+                                    />
+                                </Route>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Route exact path={["/", "/in-progress"]}>
+                                    <TodoList
+                                        status="IN_PROGRESS"
+                                        todos={filteredTodos}
+                                        onDelete={remove}
+                                        onAdvance={advance}
+                                        setIdToDelete={setIdToDelete}
+                                    />
+                                </Route>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Route exact path={["/", "/done"]}>
+                                    <TodoList
+                                        status="DONE"
+                                        todos={filteredTodos}
+                                        onDelete={remove}
+                                        onAdvance={advance}
+                                        setIdToDelete={setIdToDelete}
+                                    />
+                                </Route>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Route exact path={"/delete"}>
+                                    <Delete id={idToDelete} onDelete={remove}/>
+                                </Route>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Route exact path={"/confirmdelete"}>
+                                    <ConfirmDelete/>
+                                </Route>
+                            </Grid>
+                        </Grid>
+                    </Switch>
+                </Route>
+            </Grid>
         </Container>
     );
 }

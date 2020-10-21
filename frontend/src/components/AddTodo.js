@@ -25,6 +25,7 @@ export default function AddTodo({ onAdd }) {
                 variant={"outlined"}
                 margin={"normal"}
                 required
+                multiline
                 fullWidth
                 autoFocus
                 onChange={(event) => setDescription(event.target.value)}
@@ -34,7 +35,7 @@ export default function AddTodo({ onAdd }) {
                 variant="contained"
                 disabled={description.length < 1}
                 color="primary"
-                type="submit">New Todo</Button>
+                type="submit">Add</Button>
         </form>
     );
 
