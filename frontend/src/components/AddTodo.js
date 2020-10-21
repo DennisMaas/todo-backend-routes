@@ -20,15 +20,15 @@ export default function AddTodo({ onAdd }) {
 
     return (
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
-                <TextField
-                    label={"Add a new task"}
-                    variant={"outlined"}
-                    margin={"normal"}
-                    required
-                    fullWidth
-                    autoFocus
-                    onChange={(event) => setDescription(event.target.value)}
-                />
+            <TextField
+                label={"Add a new task"}
+                variant={"outlined"}
+                margin={"normal"}
+                required
+                fullWidth
+                autoFocus
+                onChange={(event) => setDescription(event.target.value)}
+            />
             <Button
                 fullWidth
                 variant="contained"
