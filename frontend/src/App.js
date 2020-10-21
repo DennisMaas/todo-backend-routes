@@ -57,6 +57,9 @@ export default function App() {
                     <Route exact path={"/delete"}>
                         <Delete id={idToDelete} onDelete={remove}/>
                     </Route>
+                    <Route>
+                        <ConfirmDelete/>
+                    </Route>
                 </Board>
             </Switch>
         </Main>

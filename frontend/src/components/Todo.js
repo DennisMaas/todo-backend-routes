@@ -29,7 +29,7 @@ export default function Todo({ id, status, description, onAdvance, setIdToDelete
 
 const StyledTodo = styled.section`
     padding: 8px;
-    border: 1px solid salmon;
+    border: 1px solid #fa8072;
     border-radius: 8px;
 `;
 
