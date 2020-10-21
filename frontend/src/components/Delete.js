@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 export default function Delete({id, onDelete}) {
 
@@ -11,7 +11,7 @@ export default function Delete({id, onDelete}) {
 
     const deleteHandler = (id) => {
         onDelete(id)
-        history.push("/")
+        history.push("/confirmdelete")
     }
 
     return(

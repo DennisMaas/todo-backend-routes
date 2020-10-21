@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Delete from "./components/Delete";
+import ConfirmDelete from "./components/ConfirmDelete";
 
 export default function App() {
     const [todos, create, remove, advance] = useTodos();
@@ -57,9 +58,10 @@ export default function App() {
                     <Route exact path={"/delete"}>
                         <Delete id={idToDelete} onDelete={remove}/>
                     </Route>
-                    <Route>
+                    <Route exact path={"/confirmdelete"}>
                         <ConfirmDelete/>
                     </Route>
+
                 </Board>
             </Switch>
         </Main>
