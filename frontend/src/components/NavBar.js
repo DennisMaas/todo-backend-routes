@@ -1,13 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export default function NavBar() {
     return (
-        <>
-            <Link to={"/"}>All notes</Link>
-            <Link to={"/open"}>Open</Link>
-            <Link to={"/in-progress"}>In progress</Link>
-            <Link to={"/done"}>Done</Link>
-        </>
+        <MenuList>
+            <MenuItem component={Link} to={"/"}>All notes</MenuItem>
+            <MenuItem component={Link} to={"open"}>Open</MenuItem>
+            <MenuItem component={Link} to={"/in-progress"}>In progress</MenuItem>
+            <MenuItem component={Link} to={"/done"}>Done</MenuItem>
+        </MenuList>
     );
 }

@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import TodoList from './components/TodoList';
 import useTodos from './hooks/useTodos';
 import AddTodo from './components/AddTodo';
@@ -15,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {Container} from "@material-ui/core";
 import NavBar from "./components/NavBar";
+import React from "react";
 
 
 
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme)=> ({
         padding: theme.spacing(2),
         textAlign: "center",
         color: theme.palette.text.primary,
+        background: theme.palette.background.paper,
     },
     button: {
         margin: theme.spacing(0.5, 0),
@@ -48,13 +49,13 @@ export default function App() {
                     </Typography>
                 </Grid>
                 <Grid container spacing={3}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} md={6}>
                         <AddTodo onAdd={create} />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} md={4}>
                         <Search search={search} onChange={setSearch}/>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} md={2}>
                         <NavBar/>
                     </Grid>
                 </Grid>
